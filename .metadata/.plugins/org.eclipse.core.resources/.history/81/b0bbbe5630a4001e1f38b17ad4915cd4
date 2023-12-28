@@ -1,0 +1,75 @@
+package MyPackage;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+
+/**
+ * Servlet implementation class MyServlet
+ */
+public class MyServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public MyServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		String apiKey = "cfd1fe4165fd5bfbe021f04a8e3a2685";
+		String city = request.getParameter("city");
+		String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+apiKey;
+		
+		@SuppressWarnings("deprecation")
+		URL url = new URL(apiUrl);
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		connection.setRequestMethod("GET");
+		
+		//Reading the Data from Network
+		InputStream inputStream = connection.getInputStream();
+		InputStreamReader reader = new InputStreamReader(inputStream);
+		
+		//Store the data in String
+		StringBuilder responseContent = new StringBuilder();
+		
+		//To take Input from reader, will create a scanner object
+		Scanner sc = new Scanner(reader);
+		while(sc.hasNext()) {
+			responseContent.append(sc.nextLine());
+		}
+		sc.close();
+		
+		System.out.println(responseContent);
+		
+		//Type Casting
+		Gson gson = new Gson();
+		
+		
+	}
+//	https://api.openweathermap.org/data/2.5/weather?q={Bangalore}&appid={e9cc7c6b20366577a338de5735459164}
+
+}

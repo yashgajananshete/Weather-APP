@@ -1,0 +1,7 @@
+INDEX VERSION 1.134
+C:\Users\Admin\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3614785529.index
+\JavaProjectSampleJakarta\src\main\java
+C:\Users\Admin\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2168012052.index
+\WeatherApp\src\main\java
+C:\Users\Admin\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3016428448.index
+\WeatherApp\src\main\java
